@@ -1,14 +1,42 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DetailsComponent } from './products/details/details.component';
-import { ListComponent } from './products/list/list.component';
-import { CounterComponent } from './products/counter/counter.component';
-import { InsertComponent } from './products/insert/insert.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
+import { ProductService } from './product.service';
+import { DetailsComponent } from './details/details.component';
+import { ListComponent } from './list/list.component';
+import { UpdateComponent } from './update/update.component';
+import { DeleteComponent } from './delete/delete.component';
+import { CounterComponent } from './counter/counter.component';
+import { CreateComponent } from './create/create.component';
+import { CatalogRoutingModule } from './catalog-routing.module';
+
+const routes: Routes = [
+  { path: '/list', component: ListComponent },              // optional: product list at /catalog/
+  { path: 'details/:id', component: DetailsComponent },// optional
+  { path: 'create', component: CreateComponent },
+  { path: 'update/:id', component: UpdateComponent },
+  { path: 'delete/:id', component: DeleteComponent }
+];
 
 @NgModule({
-  declarations: [],
-  imports: [ CommonModule ,ListComponent,DetailsComponent,CounterComponent,InsertComponent],
-
-  exports: [ ListComponent, InsertComponent]
+  declarations: [
+    ListComponent,
+    DetailsComponent,
+    UpdateComponent,
+    DeleteComponent,
+    CounterComponent,
+    CreateComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    CatalogRoutingModule
+  ],
+  providers: [ProductService],
+  exports: [ListComponent,DeleteComponent, CreateComponent, UpdateComponent]
 })
 export class CatalogModule { }

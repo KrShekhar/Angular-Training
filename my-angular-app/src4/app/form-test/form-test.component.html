@@ -1,0 +1,24 @@
+<h2>Simple Form with @ViewChild</h2>
+
+<form #myForm="ngForm">
+
+  <label>Name:</label>
+  <input type="text" name="name" ngModel />
+
+  <br><br>
+
+  <label>Age:</label>
+  <input type="number" name="age" ngModel />
+
+  <br><br>
+
+  <label>City:</label>
+  <input type="text" name="city" ngModel />
+
+</form>
+
+<br>
+
+<button (click)="showValues()">Show Values</button>
+<button (click)="resetForm()">Reset</button>
+<button (click)="checkValidity()">Check Validity</button>
