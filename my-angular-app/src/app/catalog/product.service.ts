@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Product } from './product';
 
 //angular Modules:
@@ -56,13 +56,27 @@ export class ProductService {
 
     return this.http.get<Product>(this.apiUrl + "/" + id);
 
-   // return this.list.find((p: any) => { return p.id == id });
+    // return this.list.find((p: any) => { return p.id == id });
   }
 
   updateProduct(prod: any): void {
-    this.http.put(this.apiUrl + "/" + prod.id, prod);
+    console.log("updating product", prod);
+    //call REST API to update product
+    this.http.put(this.apiUrl + "/" + prod.id, prod).subscribe({
+      next: () => console.log("✔ PUT call SUCCESS"),
+      error: (e) => console.log("❌ PUT call FAILED", e)
+    });
+    console.log("api url: " + this.apiUrl + "/" + prod.id);
     // let index=this.list.findIndex((p:any)=> p.id==prod.id);
     // if(index != -1)
     //  this.list[index]=prod;
+  }
+  addProduct(prod: any): void {
+    console.log("updating product", prod);
+    //call REST API to update product
+    this.http.post(this.apiUrl , prod).subscribe({
+      next: () => console.log("✔ PUT call SUCCESS"),
+      error: (e) => console.log("❌ PUT call FAILED", e)
+    });
   }
 }

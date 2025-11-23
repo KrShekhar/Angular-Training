@@ -41,7 +41,7 @@ export class DetailsComponent {
   goToUpdate(): void {
     let id = this.currentProductId;
     console.log("Updating product with id:", id);
-    this.router.navigate(['./update/', id]);
+    this.router.navigate(['./catalog/update/', id]);
   }
 
   goToDelete(id: number): void {
